@@ -34,21 +34,6 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
 }
 
-export const onSubmit = async(id:string) =>{
-  try {
-    const router = useRouter();
-
-    await axios.delete(`/api/courses/${id}`);
-
-    toast.success("Course deleted");
-    router.refresh();
-    router.push(`/teacher/internship-list`);
-  } catch(e) {
-    console.error(e);
-    toast.error("Something went wrong");
-  }
-}
-
 export function DataTable<TData, TValue>({
   columns,
   data,
