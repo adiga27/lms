@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs";
 async function deleteS3File(key:string|undefined) {
     console.log(key);
 	const params = {
-		Bucket: process.env.AWS_S3_BUCKET_NAME,
+		Bucket: process.env.N_AWS_S3_BUCKET_NAME,
 		Key: key,
 	}
 

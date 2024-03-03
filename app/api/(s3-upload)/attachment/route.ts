@@ -5,7 +5,7 @@ import { isTeacher } from "@/lib/teacher";
 
 async function uploadFileToS3(file:Buffer, courseId:String, fileName:String) {
 	const params = {
-		Bucket: process.env.AWS_S3_BUCKET_NAME,
+		Bucket: process.env.N_AWS_S3_BUCKET_NAME,
 		Key: `${courseId}/attachments/${fileName}`,
 		Body: file,
 		ContentType: "applicaation/pdf,msword,vnd.openxmlformats-officedocument.wordprocessingml.document,vnd.ms-powerpoint,vnd.openxmlformats-officedocument.presentationml.presentation,vnd.ms-excel,vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -16,7 +16,7 @@ async function uploadFileToS3(file:Buffer, courseId:String, fileName:String) {
 
     let url; 
     if(data.$metadata.httpStatusCode === 200){
-        url = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${params.Key}`
+        url = `https://${process.env.N_AWS_S3_BUCKET_NAME}.s3.${process.env.N_AWS_REGION}.amazonaws.com/${params.Key}`
     }
 	return {
         url,

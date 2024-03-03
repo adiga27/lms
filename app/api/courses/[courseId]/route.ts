@@ -60,7 +60,7 @@ export async function DELETE(
     console.log(imageAndAttachmentKey);
 
     if(imageAndAttachmentKey.length !== 0){
-      const deletedImageAttachmentS3 = await deleteS3File(imageAndAttachmentKey,process.env.AWS_S3_BUCKET_NAME);
+      const deletedImageAttachmentS3 = await deleteS3File(imageAndAttachmentKey,process.env.N_AWS_S3_BUCKET_NAME);
       
       console.log(deletedImageAttachmentS3);
       
@@ -77,7 +77,7 @@ export async function DELETE(
     });
     
     if(chapterKey.length !== 0){
-      const videoS3 = await deleteS3File(chapterKey,process.env.AWS_S3_CLOUDFRONT_BUCKET_NAME);
+      const videoS3 = await deleteS3File(chapterKey,process.env.N_AWS_S3_CLOUDFRONT_BUCKET_NAME);
       
       if(videoS3?.$metadata.httpStatusCode !== 200){
         return new NextResponse("Chapters are not deleted",{status:400});

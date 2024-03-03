@@ -5,7 +5,7 @@ import { isTeacher } from "@/lib/teacher";
 
 async function uploadFileToS3(file:Buffer, courseId:String, fileName:String) {
 	const params = {
-		Bucket: process.env.AWS_S3_CLOUDFRONT_BUCKET_NAME,
+		Bucket: process.env.N_AWS_S3_CLOUDFRONT_BUCKET_NAME,
 		Key: `${courseId}/chapters/${fileName}`,
 		Body: file,
 		ContentType: "video/mp4,mkv,avi,mov",
@@ -16,7 +16,7 @@ async function uploadFileToS3(file:Buffer, courseId:String, fileName:String) {
 
     let url;
     if(data.$metadata.httpStatusCode === 200){
-        url=`${process.env.AWS_DISTRIBUTION_DOMAIN_NAME}${params.Key}`
+        url=`${process.env.N_AWS_DISTRIBUTION_DOMAIN_NAME}${params.Key}`
     }
 	return {url,key:params.Key};
 }
