@@ -76,9 +76,10 @@ export const ImageForm = ({
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
-            <img
+            <Image
               alt="Upload"
               className="object-cover rounded-md"
+              fill
               src={initialData.imageUrl}
             />
           </div>
