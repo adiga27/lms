@@ -15,7 +15,7 @@ export const SearchInput = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const placeholder = pathname === '/internship' ? "Search Role" : "Search Courses"
+  const placeholder = pathname === '/student-hub/internships' || pathname === '/student-hub/jobs' ? "Search Role" : pathname === '/student-hub/hackathon' ? "Search Organizer": "Search Courses"
 
   const currentCategoryId = searchParams.get("categoryId");
 

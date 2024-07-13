@@ -25,9 +25,9 @@ function NavbarRoutes() {
           <SearchInput />
         </div>
       )}
-      <div className="flex gap-x-2 ml-auto">
+      <div className="flex gap-x-4 ml-auto">
         {isTeacherPage || isCoursePage ? (
-          <Link href="/">
+          <Link href="/dashboard">
             <Button size="sm" variant="ghost">
               <LogOut className="h-4 w-4 mr-2" />
               Exit
@@ -36,13 +36,27 @@ function NavbarRoutes() {
         ) : isTeacher(userId) ? (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
-              Teacher mode
+              Admin mode
             </Button>
           </Link>
         ) : null}
-        <UserButton
-          afterSignOutUrl="/"
-        />
+        {userId ? 
+          <UserButton
+            afterSignOutUrl="/"
+          /> : 
+          <div className="flex gap-x-4 items-center">
+            <Link href="/sign-in">
+              <Button size="sm" variant="ghost">
+                Login
+              </Button>
+            </Link>
+            <Link href="/sign-up">
+              <Button size="sm" variant="default">
+                Sign Up
+              </Button>
+            </Link>
+          </div>
+        }
       </div>
     </>
   )

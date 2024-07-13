@@ -1,9 +1,7 @@
-import Stripe from "stripe";
+import { db } from "@/lib/db";
+import { razorpay } from "@/lib/razorpay-credentials";
 import { currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-
-import { db } from "@/lib/db";
-import { stripe } from "@/lib/stripe";
 
 export async function POST(
   req: Request,
@@ -40,62 +38,24 @@ export async function POST(
       return new NextResponse("Not found", { status: 404 });
     }
 
-    const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [
-      {
-        quantity: 1,
-        price_data: {
-          currency: "INR",
-          product_data: {
-            name: course.title,
-            description: course.description!,
-          },
-          unit_amount: Math.round(course.price! * 100),
-        },
-      }
-    ];
-
-    let stripeCustomer = await db.stripeCustomer.findUnique({
-      where: {
-        userId: user.id,
-      },
-      select: {
-        stripeCustomerId: true,
-      }
-    });
-
-    if (!stripeCustomer) {
-      const customer = await stripe.customers.create({
-        email: user.emailAddresses[0].emailAddress,
-        // name: "Asdas",
-        // address:{
-        //   line1: '81 Basavagudi',
-        //   postal_code: '560081',
-        //   city: 'Banglore',
-        //   state: 'KA',
-        //   country: 'IN',
-        // } 
-      });
-      
-      stripeCustomer = await db.stripeCustomer.create({
-        data: {
-          userId: user.id,
-          stripeCustomerId: customer.id,
-        }
-      });
+    const options = {
+        amount: (course.price ?? 0) * 100,
+        currency: 'INR',
+        receipt: "sfsdfsdf",
+        payment_capture:1
     }
 
-    const session = await stripe.checkout.sessions.create({
-      customer: stripeCustomer.stripeCustomerId,
-      line_items,
-      mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success=1`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled=1`,
-      metadata: {
-        courseId: course.id,
-        userId: user.id,
-      },
+    const response = await razorpay.orders.create(options)
+		console.log(response)
+    
+    return NextResponse.json({
+      id: response.id,
+      currency: response.currency,
+      amount: response.amount,
+      name: user.firstName+" "+user.lastName,
+      email: user.emailAddresses[0].emailAddress,
+      mobile:user?.phoneNumbers[0]?.phoneNumber
     });
-    return NextResponse.json({ url: session.url });
   } catch (error) {
     console.log("[COURSE_ID_CHECKOUT]", error);
     return new NextResponse("Internal Error", { status: 500 })

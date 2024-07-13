@@ -54,7 +54,7 @@ function InternshipEdit({initialData,internshipId}:InternshipFormProps) {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/internship/${internshipId}`, values);
-      toast.success("Internship Added");
+      toast.success("Internship Updated");
       router.refresh();
       router.push('/teacher/internship-list');
     } catch(e) {

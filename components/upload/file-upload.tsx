@@ -46,6 +46,7 @@ function FileUpload({courseId,onChange}:FileUploadProps) {
     }
     
     const handleChange =(file:File) => {
+        console.log(file);
         setIsFailed(false);
         setIsUpload(true);
         fetchUrl(file);
@@ -61,6 +62,7 @@ function FileUpload({courseId,onChange}:FileUploadProps) {
         {!isupload || isFailed ? <FileUploader 
             handleChange={handleChange} 
             name="file" 
+            multiple={true}
             types={fileTypes} 
             onTypeError={onTypeError}
             maxSize={10}

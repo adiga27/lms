@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web Hosting
 
-## Getting Started
+## Introduction
+A Learning Management System (LMS) is a software application designed to deliver, manage, and track educational content and training programs. LMS platforms provide a structured environment for educators to create and distribute content, for learners to access and engage with educational material, and for administrators to monitor and assess the learning process.
 
-First, run the development server:
+### Key features of this project include:
 
-```bash
+* **AWS Integration**: Utilizes AWS S3 for video storage and CloudFront for optimized content delivery, ensuring fast and reliable access to educational materials.
+* **Course Purchase and Access**: Allows users to purchase courses and access a variety of learning materials, including videos and an internship portal.
+* **Secure Payments**: Integrated Razor Pay payment gateway to facilitate secure and convenient transactions.
+* **Optimized Content Delivery**: Ensures fast and reliable access to resources through AWS services, enhancing the learning experience for users.
+
+## Prerequisites
+Node v20.10.0\
+Npm V10.8.1
+
+## Installation
+**1. Clone the repository:**
+```
+git clone https://github.com/adiga27/lms.git
+cd lms
+```
+**2. Install dependencies:**
+```
+npm install
+```
+**3. Change a `.env.example` file to `.env`**
+Add required data into `.env` file
+
+**4. Third party dependencies**
+1. MySQL
+2. Clerk
+3. RazerPay
+4. AWS S3 and Cloudfront
+5. Ngrok
+
+**5. Run the server**
+```
+node script/seed.ts
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**6. Prisma Client**
+```
+# Generate prisma client
+npx prisma generate
+# Push to Database
+npx prisma db push
+# Prisma studio
+npx prisma studio
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Screenshots
+![alt text](./public/readme/dashboard.png)
+![alt text](./public/readme/course.png)
+![alt text](./public/readme/payment.png)
+![alt text](./public/readme/admin.png)
+![alt text](./public/readme/analytics.png)

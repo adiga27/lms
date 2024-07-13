@@ -83,6 +83,7 @@ const ChapterIdPage = async ({
               />
             ) : (
               <CourseEnrollButton
+                userId={userId}
                 courseId={params.courseId}
                 price={course.price!}
               />
@@ -96,6 +97,7 @@ const ChapterIdPage = async ({
             <>
               <Separator />
               <div className="p-4">
+                <h2 className="text-xl font-medium mb-3">Attachments</h2>
                 {attachments.map((attachment) => (
                   <a 
                     href={attachment.url}

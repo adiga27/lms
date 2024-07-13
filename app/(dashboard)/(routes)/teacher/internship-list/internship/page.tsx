@@ -191,6 +191,7 @@ const InternshipFormPage = () => {
                     <FormControl>
                       <Input
                         disabled={isSubmitting}
+                        placeholder="www.microsoft.com/internship"
                         {...field}
                       />
                     </FormControl>
