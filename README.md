@@ -24,7 +24,7 @@ cd lms
 ```
 npm install
 ```
-**3. Change a `.env.example` file to `.env`**
+**3. Change a `.env.example` file to `.env`**\
 Add required data into `.env` file
 
 **4. Third party dependencies**
@@ -51,8 +51,13 @@ npx prisma studio
 ```
 
 ## Screenshots
+* Dashboard
 ![alt text](./public/readme/dashboard.png)
+* Courses
 ![alt text](./public/readme/course.png)
+* Payment Gateway
 ![alt text](./public/readme/payment.png)
+* Admin Page
 ![alt text](./public/readme/admin.png)
+* Analytics
 ![alt text](./public/readme/analytics.png)
