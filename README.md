@@ -1,9 +1,10 @@
-# Web Hosting
+# Learning Management System
 
 ## Introduction
 A Learning Management System (LMS) is a software application designed to deliver, manage, and track educational content and training programs. LMS platforms provide a structured environment for educators to create and distribute content, for learners to access and engage with educational material, and for administrators to monitor and assess the learning process.
 
 ### Key features of this project include:
+Developed a Learning Management System (LMS) that leverages modern web technologies(Next.js) and AWS services. This project highlights several key features:
 
 * **AWS Integration**: Utilizes AWS S3 for video storage and CloudFront for optimized content delivery, ensuring fast and reliable access to educational materials.
 * **Course Purchase and Access**: Allows users to purchase courses and access a variety of learning materials, including videos and an internship portal.
@@ -34,13 +35,7 @@ Add required data into `.env` file
 4. AWS S3 and Cloudfront
 5. Ngrok
 
-**5. Run the server**
-```
-node script/seed.ts
-npm run dev
-```
-
-**6. Prisma Client**
+**5. Prisma Client**
 ```
 # Generate prisma client
 npx prisma generate
@@ -48,6 +43,12 @@ npx prisma generate
 npx prisma db push
 # Prisma studio
 npx prisma studio
+```
+
+**6. Run the server**
+```
+node script/seed.ts
+npm run dev
 ```
 
 ## Screenshots
